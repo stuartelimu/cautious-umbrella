@@ -25,3 +25,11 @@ async def index():
 @app.get('/pizzas')
 async def pizzas():
     return db
+
+# get pizza by id
+@app.get('/pizzas/{pizza_id}')
+async def get_pizzas(pizza_id):
+    for pizza in db:
+        if(pizza['id'] == int(pizza_id)):
+            return pizza
+    return {"error": "Pizza not found with id: " + pizza_id }
